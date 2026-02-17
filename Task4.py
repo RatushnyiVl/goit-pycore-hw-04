@@ -22,8 +22,10 @@ def show_phone(name:str, contacts:dict):
     else: return "No such a name in contacts"
 
 def show_all(contacts:dict):
-    for name, num in contacts.items():
-        print(f'{name}\t{num}')
+    if not contacts:
+        return "The list of contacts is empty"
+    result = [f'{name}\t{num}' for name, num in contacts.items()]
+    return "\n".join(result)
 
 def main():
     contacts = {}
@@ -41,7 +43,7 @@ def main():
         elif command == "hello":
             print("How can I help you?")
         elif command == 'all':
-            show_all(contacts)
+            print(show_all(contacts))
             
         # commands with arguments
         elif not args:
